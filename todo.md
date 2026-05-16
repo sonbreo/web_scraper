@@ -46,9 +46,9 @@
 - [x] Seller type filter (private only, dealer only, or both)
 
 ## 7. Deduplication
-- [ ] Track seen listing IDs or URLs across runs
-- [ ] Skip already-seen listings on repeat runs
-- [ ] Persist seen-listings state between runs (file or lightweight DB)
+- [x] Track seen listing IDs or URLs across runs
+- [x] Skip already-seen listings on repeat runs
+- [x] Persist seen-listings state between runs (file or lightweight DB)
 
 ## 8. Data Storage
 - [ ] In-memory representation (list of dicts or dataclass)
