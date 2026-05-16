@@ -1,6 +1,11 @@
 archive/
 scrape_env/
 
+# Project output and secrets
+output/*
+!output/.gitkeep
+.env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

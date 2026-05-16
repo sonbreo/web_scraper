@@ -1,41 +1,41 @@
 # Gumtree Web Scraper — TODO
 
 ## 1. Project Setup
-- [ ] Define dependencies (requests, BeautifulSoup4, lxml, etc.) in `requirements.txt`
-- [ ] Set up virtual environment
-- [ ] Create project structure (src, tests, config, output dirs)
-- [ ] Add `.gitignore` for venv, output files, secrets
+- [x] Define dependencies (requests, BeautifulSoup4, lxml, etc.) in `requirements.txt`
+- [ ] Set up virtual environment *(manual step: `python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`)*
+- [x] Create project structure (src, tests, config, output dirs)
+- [x] Add `.gitignore` for venv, output files, secrets
 
 ## 2. Configuration
-- [ ] Config file or `.env` for user settings (search URL, keywords, price range, location, etc.)
-- [ ] Support multiple search queries / categories
-- [ ] Allow toggling features (notifications, CSV output, etc.)
+- [x] Config file or `.env` for user settings (`config/settings.yaml` + `.env.example`)
+- [x] Support multiple search queries / categories
+- [x] Allow toggling features (notifications, CSV output, etc.)
 
 ## 3. HTTP / Request Layer
-- [ ] Fetch pages with `requests` (or `httpx` for async)
-- [ ] Set realistic User-Agent header to avoid blocks
-- [ ] Handle HTTP errors (4xx, 5xx) gracefully
-- [ ] Retry logic with exponential backoff on transient failures
-- [ ] Rate limiting / delay between requests to be polite
-- [ ] Support for proxies (optional)
-- [ ] Session reuse for connection pooling
+- [x] Fetch pages with `requests`
+- [x] Set realistic User-Agent header to avoid blocks
+- [x] Handle HTTP errors (4xx, 5xx) gracefully
+- [x] Retry logic with exponential backoff on transient failures
+- [x] Rate limiting / delay between requests to be polite
+- [x] Support for proxies (optional)
+- [x] Session reuse for connection pooling
 
 ## 4. Pagination
-- [ ] Detect total number of result pages
-- [ ] Iterate through all pages automatically
-- [ ] Stop early if results fall outside filters (price, date, etc.)
+- [x] Detect total number of result pages
+- [x] Iterate through all pages automatically (`iter_pages` generator in `src/pagination.py`)
+- [x] Stop early if results fall outside filters (price, date, etc.)
 
 ## 5. HTML Parsing
-- [ ] Identify stable CSS selectors / HTML structure for:
-  - [ ] Listing title
-  - [ ] Price
-  - [ ] Location
-  - [ ] Date posted / age of listing
-  - [ ] Listing URL
-  - [ ] Thumbnail image URL
-  - [ ] Seller type (private vs dealer)
-- [ ] Handle missing or malformed fields without crashing
-- [ ] Handle "price on request" / non-numeric price strings
+- [x] Identify stable CSS selectors / HTML structure for:
+  - [x] Listing title
+  - [x] Price
+  - [x] Location
+  - [x] Date posted / age of listing
+  - [x] Listing URL
+  - [x] Thumbnail image URL
+  - [x] Seller type (private vs dealer)
+- [x] Handle missing or malformed fields without crashing
+- [x] Handle "price on request" / non-numeric price strings
 
 ## 6. Filtering
 - [ ] Keyword matching (title must contain all / any keywords)

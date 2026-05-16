@@ -1,0 +1,26 @@
+searches:
+  - url: "https://www.gumtree.com.au/s-video-games-consoles/melbourne/nintendo+switch+console/k0c18459l3001317r50"
+    keywords: ["nintendo", "switch", "console"]
+
+filters:
+  price:
+    min: 100
+    max: 500
+  max_age_days: 7
+  exclude_keywords: ["parts only", "broken", "faulty"]
+  seller_type: all  # private, dealer, all
+
+features:
+  notifications:
+    email: false
+    discord: false
+  output:
+    csv: true
+    json: false
+    sqlite: false
+
+http:
+  request_delay: 2.0
+  timeout: 10
+  max_retries: 3
+  proxies: []
