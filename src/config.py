@@ -14,6 +14,7 @@ _DEFAULTS = {
         "max_age_days": None,
         "exclude_keywords": [],
         "seller_type": "all",
+        "location": None,
     },
     "features": {
         "notifications": {"email": False, "discord": False},

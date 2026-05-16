@@ -38,12 +38,12 @@
 - [x] Handle "price on request" / non-numeric price strings
 
 ## 6. Filtering
-- [ ] Keyword matching (title must contain all / any keywords)
-- [ ] Price range (min / max)
-- [ ] Location / radius filter
-- [ ] Date filter (e.g. only listings posted in last N days)
-- [ ] Exclude keywords (e.g. "parts only", "broken")
-- [ ] Seller type filter (private only, dealer only, or both)
+- [x] Keyword matching (title must contain all / any keywords)
+- [x] Price range (min / max)
+- [x] Location / radius filter
+- [x] Date filter (e.g. only listings posted in last N days)
+- [x] Exclude keywords (e.g. "parts only", "broken")
+- [x] Seller type filter (private only, dealer only, or both)
 
 ## 7. Deduplication
 - [ ] Track seen listing IDs or URLs across runs
