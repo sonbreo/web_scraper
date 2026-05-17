@@ -51,21 +51,21 @@
 - [x] Persist seen-listings state between runs (file or lightweight DB)
 
 ## 8. Data Storage
-- [ ] In-memory representation (list of dicts or dataclass)
-- [ ] CSV export
-- [ ] JSON export
-- [ ] Optional: SQLite database for persistent storage and querying
+- [x] In-memory representation (list of dicts or dataclass)
+- [x] CSV export
+- [x] JSON export
+- [x] Optional: SQLite database for persistent storage and querying
 
 ## 9. Notifications
-- [ ] Email alert for new matching listings (SMTP / smtplib)
+- [x] Email alert for new matching listings (SMTP / smtplib)
 - [ ] Optional: desktop notification (plyer or similar)
-- [ ] Optional: Slack / Discord webhook
-- [ ] Only notify for listings not seen in previous runs
+- [x] Optional: Slack / Discord webhook
+- [x] Only notify for listings not seen in previous runs
 
 ## 10. Scheduling / Polling
-- [ ] Run on an interval (e.g. every 15 minutes)
-- [ ] CLI flag to run once vs. run continuously
-- [ ] Log each run with timestamp
+- [x] Run on an interval (e.g. every 15 minutes)
+- [x] CLI flag to run once vs. run continuously
+- [x] Log each run with timestamp
 
 ## 11. CLI Interface
 - [ ] Accept search URL or keywords as CLI arguments

@@ -17,7 +17,12 @@ _DEFAULTS = {
         "location": None,
     },
     "features": {
-        "notifications": {"email": False, "discord": False},
+        "notifications": {
+            "email": False,
+            "email_config": {},
+            "discord": False,
+            "discord_webhook": None,
+        },
         "output": {"csv": True, "json": False, "sqlite": False},
     },
     "http": {
@@ -25,6 +30,9 @@ _DEFAULTS = {
         "timeout": 10,
         "max_retries": 3,
         "proxies": [],
+    },
+    "scheduling": {
+        "interval_seconds": 900,
     },
 }
 

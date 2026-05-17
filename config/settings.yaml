@@ -9,11 +9,20 @@ filters:
   max_age_days: 7
   exclude_keywords: ["parts only", "broken", "faulty"]
   seller_type: all  # private, dealer, all
+  location: null    # optional substring match, e.g. "Melbourne"
 
 features:
   notifications:
     email: false
+    email_config:
+      smtp_host: ""       # or set SMTP_HOST env var
+      smtp_port: 587
+      username: ""        # or set SMTP_USERNAME env var
+      password: ""        # or set SMTP_PASSWORD env var
+      from: ""            # or set SMTP_FROM env var
+      to: ""              # or set SMTP_TO env var
     discord: false
+    discord_webhook: ""   # or set DISCORD_WEBHOOK_URL env var
   output:
     csv: true
     json: false
@@ -24,3 +33,6 @@ http:
   timeout: 10
   max_retries: 3
   proxies: []
+
+scheduling:
+  interval_seconds: 900   # 15 minutes; ignored when running with --once
