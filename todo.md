@@ -68,10 +68,10 @@
 - [x] Log each run with timestamp
 
 ## 11. CLI Interface
-- [ ] Accept search URL or keywords as CLI arguments
-- [ ] Flags for price range, location, interval, output format
-- [ ] `--dry-run` mode (print results, no notifications or writes)
-- [ ] `--verbose` / `--quiet` modes
+- [x] Accept search URL or keywords as CLI arguments
+- [x] Flags for price range, location, interval, output format
+- [x] `--dry-run` mode (print results, no notifications or writes)
+- [x] `--verbose` / `--quiet` modes
 
 ## 12. Logging
 - [ ] Use Python `logging` module (not bare `print`)
