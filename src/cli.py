@@ -10,8 +10,6 @@ from .scheduler import run_once, run_loop
 
 def main() -> None:
     args = _parse_args()
-    _configure_logging(args.verbose, args.quiet)
-
     try:
         config = load_config(args.config)
     except (FileNotFoundError, ValueError) as exc:
@@ -19,6 +17,8 @@ def main() -> None:
         sys.exit(1)
 
     config = _apply_overrides(config, args)
+
+    _configure_logging(args.verbose, args.quiet, args.log_file)
 
     job = lambda: run(config, dry_run=args.dry_run)
 
@@ -82,6 +82,12 @@ def _parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--verbose", "-v", action="store_true", help="Enable DEBUG logging")
     parser.add_argument("--quiet", "-q", action="store_true", help="Only log warnings and errors")
+    parser.add_argument(
+        "--log-file",
+        metavar="PATH",
+        help="Write logs to this file in addition to stdout (default: output/scraper.log)",
+        default=None,
+    )
 
     return parser.parse_args()
 
@@ -107,7 +113,7 @@ def _apply_overrides(config: dict, args: argparse.Namespace) -> dict:
     return config
 
 
-def _configure_logging(verbose: bool, quiet: bool) -> None:
+def _configure_logging(verbose: bool, quiet: bool, log_file: str | None = None) -> None:
     if verbose:
         level = logging.DEBUG
     elif quiet:
@@ -115,9 +121,21 @@ def _configure_logging(verbose: bool, quiet: bool) -> None:
     else:
         level = logging.INFO
 
-    logging.basicConfig(
-        level=level,
-        format="%(asctime)s %(levelname)-8s %(name)s: %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-    logging.getLogger().setLevel(level)
+    fmt = "%(asctime)s %(levelname)-8s %(name)s: %(message)s"
+    datefmt = "%Y-%m-%d %H:%M:%S"
+
+    root = logging.getLogger()
+    root.setLevel(level)
+
+    if not root.handlers:
+        root.addHandler(logging.StreamHandler())
+    for handler in root.handlers:
+        handler.setLevel(level)
+        handler.setFormatter(logging.Formatter(fmt, datefmt=datefmt))
+
+    log_path = Path(log_file) if log_file else Path(__file__).parent.parent / "output" / "scraper.log"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    file_handler = logging.FileHandler(log_path, encoding="utf-8")
+    file_handler.setLevel(level)
+    file_handler.setFormatter(logging.Formatter(fmt, datefmt=datefmt))
+    root.addHandler(file_handler)

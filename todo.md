@@ -74,14 +74,14 @@
 - [x] `--verbose` / `--quiet` modes
 
 ## 12. Logging
-- [ ] Use Python `logging` module (not bare `print`)
-- [ ] Log levels: DEBUG for parsing detail, INFO for run summary, WARNING/ERROR for failures
-- [ ] Write logs to file and/or stdout
+- [x] Use Python `logging` module (not bare `print`)
+- [x] Log levels: DEBUG for parsing detail, INFO for run summary, WARNING/ERROR for failures
+- [x] Write logs to file and/or stdout
 
 ## 13. Error Handling & Robustness
-- [ ] Catch and log network timeouts without crashing
-- [ ] Handle Gumtree layout changes gracefully (warn when selectors return nothing)
-- [ ] Validate config values on startup (bad URL, invalid price range, etc.)
+- [x] Catch and log network timeouts without crashing
+- [x] Handle Gumtree layout changes gracefully (warn when selectors return nothing)
+- [x] Validate config values on startup (bad URL, invalid price range, etc.)
 
 ## 14. Testing
 - [ ] Unit tests for parsing logic using saved HTML fixtures

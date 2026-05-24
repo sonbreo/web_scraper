@@ -59,11 +59,20 @@ def _validate(config: dict) -> None:
     if not config["searches"]:
         raise ValueError("config: at least one search must be defined under 'searches'")
 
+    for i, search in enumerate(config["searches"]):
+        url = search.get("url", "")
+        if not url.startswith(("http://", "https://")):
+            raise ValueError(f"config: searches[{i}].url is missing or not a valid HTTP URL: {url!r}")
+
     price = config["filters"]["price"]
     if price["min"] < 0 or price["max"] < 0:
         raise ValueError("config: price min/max must be non-negative")
     if price["min"] > price["max"]:
         raise ValueError("config: price min must not exceed price max")
+
+    max_age = config["filters"].get("max_age_days")
+    if max_age is not None and max_age <= 0:
+        raise ValueError("config: max_age_days must be a positive number")
 
     seller_type = config["filters"]["seller_type"]
     if seller_type not in ("private", "dealer", "all"):
@@ -74,3 +83,9 @@ def _validate(config: dict) -> None:
         raise ValueError("config: request_delay must be non-negative")
     if http["max_retries"] < 0:
         raise ValueError("config: max_retries must be non-negative")
+    if http["timeout"] <= 0:
+        raise ValueError("config: http.timeout must be positive")
+
+    interval = config["scheduling"]["interval_seconds"]
+    if interval <= 0:
+        raise ValueError("config: scheduling.interval_seconds must be positive")

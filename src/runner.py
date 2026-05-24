@@ -28,16 +28,18 @@ def run(config: dict, dry_run: bool = False) -> list[Listing]:
             url = search["url"]
             keywords = search.get("keywords")
             logger.info("Starting search: %s", url)
+            try:
+                raw_listings: list[Listing] = []
+                for page_soup in iter_pages(fetcher, url):
+                    raw_listings.extend(parse_page(page_soup))
 
-            raw_listings: list[Listing] = []
-            for page_soup in iter_pages(fetcher, url):
-                raw_listings.extend(parse_page(page_soup))
-
-            filtered = apply_filters(raw_listings, config["filters"], keywords=keywords)
-            new = dedup.filter_new(filtered)
-            dedup.mark_seen(new)
-            all_new.extend(new)
-            logger.info("Search done: %d new listings after dedup", len(new))
+                filtered = apply_filters(raw_listings, config["filters"], keywords=keywords)
+                new = dedup.filter_new(filtered)
+                dedup.mark_seen(new)
+                all_new.extend(new)
+                logger.info("Search done: %d new listings after dedup", len(new))
+            except Exception as exc:
+                logger.error("Search failed for %s — skipping: %s", url, exc)
 
     if dry_run:
         _print_results(all_new)
